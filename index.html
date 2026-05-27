@@ -54,6 +54,24 @@
             padding: 0 20px;
         }
 
+        .alert-box {
+            background-color: #FEF2F2;
+            border-left: 5px solid var(--senai-red);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+            color: #991B1B;
+            font-size: 1.05rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .alert-box strong {
+            color: var(--senai-red);
+            display: block;
+            font-size: 1.15rem;
+            margin-bottom: 5px;
+        }
+
         .section-title {
             font-size: 1.6rem;
             color: var(--senai-blue);
@@ -70,7 +88,7 @@
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             border: 1px solid var(--senai-border);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             overflow: hidden;
         }
 
@@ -105,13 +123,19 @@
             background-color: #EFF6FF;
             border-left: 4px solid var(--senai-blue);
             padding: 15px;
-            margin-bottom: 20px;
             border-radius: 0 4px 4px 0;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .context-box strong {
             color: var(--senai-blue);
+            display: block;
+            margin-bottom: 4px;
+            margin-top: 10px;
+        }
+        
+        .context-box strong:first-child {
+            margin-top: 0;
         }
         
         .code-snippet {
@@ -121,27 +145,8 @@
             border-radius: 6px;
             font-family: 'Consolas', monospace;
             font-size: 0.9rem;
-            margin-bottom: 20px;
+            margin-top: 15px;
             overflow-x: auto;
-        }
-
-        .answer-area {
-            width: 100%;
-            min-height: 120px;
-            border: 1px dashed var(--senai-gray);
-            border-radius: 6px;
-            background-color: #F8FAFC;
-            padding: 15px;
-            font-family: 'Consolas', monospace;
-            color: #64748B;
-            resize: vertical;
-        }
-        
-        .answer-area:focus {
-            outline: none;
-            border-color: var(--senai-blue);
-            background-color: #fff;
-            color: var(--senai-dark);
         }
 
         .nav-tabs {
@@ -181,7 +186,7 @@
             text-align: center;
             padding: 30px;
             color: var(--senai-gray);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             border-top: 1px solid var(--senai-border);
             background: white;
             position: relative;
@@ -199,6 +204,11 @@
 
     <div class="container">
         
+        <div class="alert-box">
+            <strong>⚠️ Atenção: Formato de Entrega</strong>
+            A entrega desta atividade deverá ser feita exclusivamente através de um arquivo <strong>.sql</strong> contendo todos os scripts de resolução numerados. Use este material online apenas como referência para leitura das questões.
+        </div>
+
         <div class="nav-tabs">
             <button class="tab-btn active" onclick="switchTab('parte1')">Parte 1: Aplicação de Constraints</button>
             <button class="tab-btn" onclick="switchTab('parte2')">Parte 2: Múltiplas Tabelas (Desafio)</button>
@@ -217,7 +227,6 @@
                     <div class="context-box">
                         <strong>Contexto:</strong> Em um sistema de cadastro de clientes de uma clínica médica, não faz sentido ter registros sem nome ou e-mail. O NOT NULL garante que informações essenciais nunca fiquem em branco, evitando problemas em agendamentos e comunicações.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva seu código SQL aqui..."></textarea>
                 </div>
             </div>
 
@@ -230,7 +239,6 @@
                     <div class="context-box">
                         <strong>Contexto:</strong> Em um sistema de login de uma plataforma de cursos online, cada usuário precisa ter um e-mail único para autenticação. O UNIQUE evita duplicidade e garante que cada conta seja exclusiva.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva seu código SQL aqui..."></textarea>
                 </div>
             </div>
 
@@ -243,7 +251,6 @@
                     <div class="context-box">
                         <strong>Contexto:</strong> Em um sistema de pedidos de e-commerce, se o status não for informado, deve começar como 'aberto'. O DEFAULT automatiza essa regra e garante consistência no fluxo de pedidos.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva seu código SQL aqui..."></textarea>
                 </div>
             </div>
 
@@ -256,7 +263,6 @@
                     <div class="context-box">
                         <strong>Contexto:</strong> Em um sistema de estoque de supermercado, não faz sentido cadastrar produtos com preço negativo. O CHECK impede erros de digitação e protege contra dados inválidos que poderiam comprometer relatórios financeiros.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva seu código SQL aqui..."></textarea>
                 </div>
             </div>
 
@@ -269,7 +275,6 @@
                     <div class="context-box">
                         <strong>Contexto:</strong> Em um sistema de RH, cada funcionário pertence a um departamento. A FOREIGN KEY garante que não existam funcionários vinculados a departamentos inexistentes, mantendo a integridade organizacional.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva seu código SQL aqui..."></textarea>
                 </div>
             </div>
 
@@ -282,7 +287,6 @@
                     <div class="context-box">
                         <strong>Contexto:</strong> Em um sistema escolar, se uma turma for excluída, todos os alunos vinculados a ela também devem ser removidos automaticamente. O CASCADE evita registros “órfãos” e mantém o banco limpo.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva seu código SQL aqui..."></textarea>
                 </div>
             </div>
 
@@ -295,7 +299,6 @@
                     <div class="context-box">
                         <strong>Contexto:</strong> Em um sistema de gestão hospitalar, não é permitido excluir um médico enquanto houver pacientes vinculados a ele. O RESTRICT protege contra exclusões indevidas que poderiam comprometer o histórico clínico.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva seu código SQL aqui..."></textarea>
                 </div>
             </div>
 
@@ -308,7 +311,6 @@
                     <div class="context-box">
                         <strong>Contexto:</strong> Em um sistema de vendas, um mesmo produto pode aparecer em vários pedidos, mas dentro de um mesmo pedido não pode se repetir. A PK composta garante essa regra de negócio.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva seu código SQL aqui..."></textarea>
                 </div>
             </div>
 
@@ -321,7 +323,6 @@
                     <div class="context-box">
                         <strong>Contexto:</strong> Em sistemas grandes de bancos ou seguradoras, nomear constraints facilita manutenção. Se um erro ocorrer, o banco mostra o nome da constraint, ajudando a identificar rapidamente o problema sem confusão.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva seu código SQL aqui..."></textarea>
                 </div>
             </div>
 
@@ -333,22 +334,22 @@
                 <div class="card-body">
                     <div class="context-box">
                         <strong>Contexto:</strong> Imagine um sistema de e-commerce que precisa controlar clientes, pedidos, produtos e itens de pedido. Para que o banco funcione corretamente, é essencial criar as tabelas na ordem certa (primeiro as “tabelas pai”, depois as “filhas”) e manter o SQL organizado. Em empresas reais, scripts desorganizados podem gerar erros de integridade e dificultar a manutenção.
+                        
+                        <strong style="margin-top: 15px;">ORGANIZE O SQL ABAIXO:</strong>
                     </div>
-                    <p style="margin-bottom: 10px; font-weight: bold;">ORGANIZE O SQL ABAIXO:</p>
                     <div class="code-snippet">
 CREATE TABLE pedidos (status VARCHAR(20) DEFAULT 'aberto', id INT PRIMARY KEY, cliente_id INT, FOREIGN KEY (cliente_id) REFERENCES clientes(id));
 CREATE TABLE clientes (email VARCHAR(255) UNIQUE, id INT PRIMARY KEY, nome VARCHAR(100) NOT NULL);
 CREATE TABLE produtos (preco DECIMAL(10,2), id INT PRIMARY KEY, CONSTRAINT ck_preco CHECK (preco >= 0), nome VARCHAR(100) NOT NULL);
 CREATE TABLE pedido_item (quantidade INT NOT NULL, produto_id INT, pedido_id INT, PRIMARY KEY (pedido_id, produto_id), FOREIGN KEY (produto_id) REFERENCES produtos(id), FOREIGN KEY (pedido_id) REFERENCES pedidos(id));
                     </div>
-                    <textarea class="answer-area" style="min-height: 200px;" placeholder="Reescreva os comandos na ordem correta de execução e formatados adequadamente..."></textarea>
                 </div>
             </div>
         </div>
 
         <!-- TAB PARTE 2 -->
         <div id="parte2" class="tab-content">
-            <h2 class="section-title">Parte 2: Exercícios com múltiplas tabelas e contextos</h2>
+            <h2 class="section-title">Parte 2: Exercícios com Múltiplas Tabelas e Contextos</h2>
             
             <div class="card">
                 <div class="card-header">
@@ -360,7 +361,6 @@ CREATE TABLE pedido_item (quantidade INT NOT NULL, produto_id INT, pedido_id INT
                         <strong>Contexto:</strong> Em um sistema de e-commerce, os clientes precisam ter dados básicos de identificação e contato.<br>
                         <strong>Particularidades:</strong> Cada cliente deve ter um identificador único, não pode existir cliente sem nome ou e-mail, e o e-mail não pode se repetir entre diferentes clientes.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva o comando CREATE TABLE aqui..."></textarea>
                 </div>
             </div>
 
@@ -374,7 +374,6 @@ CREATE TABLE pedido_item (quantidade INT NOT NULL, produto_id INT, pedido_id INT
                         <strong>Contexto:</strong> Produtos vendidos precisam ter informações consistentes para controle de estoque e vendas.<br>
                         <strong>Particularidades:</strong> Cada produto deve ter um identificador único, não pode existir produto sem nome, o preço deve seguir uma regra de negócio (não pode ser inválido), e o status inicial deve ser definido automaticamente.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva o comando CREATE TABLE aqui..."></textarea>
                 </div>
             </div>
 
@@ -388,7 +387,6 @@ CREATE TABLE pedido_item (quantidade INT NOT NULL, produto_id INT, pedido_id INT
                         <strong>Contexto:</strong> Cada pedido pertence a um cliente e precisa registrar informações essenciais.<br>
                         <strong>Particularidades:</strong> Deve haver ligação com a tabela de clientes, todo pedido precisa ter uma data de criação obrigatória, e o status deve começar com um valor padrão.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva o comando CREATE TABLE aqui..."></textarea>
                 </div>
             </div>
 
@@ -402,7 +400,6 @@ CREATE TABLE pedido_item (quantidade INT NOT NULL, produto_id INT, pedido_id INT
                         <strong>Contexto:</strong> Um pedido pode ter vários produtos, mas o mesmo produto não pode se repetir dentro do mesmo pedido.<br>
                         <strong>Particularidades:</strong> Precisa de uma chave composta para identificar corretamente cada item, deve estar ligado tanto à tabela de pedidos quanto à de produtos, e a quantidade precisa seguir uma regra de negócio (não pode ser inválida).
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva o comando CREATE TABLE aqui..."></textarea>
                 </div>
             </div>
 
@@ -416,7 +413,6 @@ CREATE TABLE pedido_item (quantidade INT NOT NULL, produto_id INT, pedido_id INT
                         <strong>Contexto:</strong> Em um sistema de RH, os funcionários precisam estar vinculados a departamentos válidos.<br>
                         <strong>Particularidades:</strong> Cada departamento deve ter um identificador único, não pode existir departamento sem nome, e o nome não pode se repetir.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva o comando CREATE TABLE aqui..."></textarea>
                 </div>
             </div>
 
@@ -430,9 +426,13 @@ CREATE TABLE pedido_item (quantidade INT NOT NULL, produto_id INT, pedido_id INT
                         <strong>Contexto:</strong> Cada funcionário pertence a um departamento e precisa estar corretamente vinculado.<br>
                         <strong>Particularidades:</strong> Deve haver ligação com a tabela de departamentos, a exclusão de departamentos precisa ter uma regra clara (se pode ou não excluir quando há funcionários), e as restrições devem ser nomeadas para facilitar manutenção.
                     </div>
-                    <textarea class="answer-area" placeholder="Escreva o comando CREATE TABLE aqui..."></textarea>
                 </div>
             </div>
+        </div>
+
+        <div class="alert-box" style="margin-top: 40px; text-align: center; border-left: none; border-top: 5px solid var(--senai-red);">
+            <strong>Lembrete Final: Entrega da Atividade</strong>
+            Certifique-se de que todas as 16 questões foram resolvidas no seu arquivo <strong>.sql</strong>. Essa estrutura de entrega foi pensada para otimizar o seu tempo e o foco na prática.
         </div>
 
     </div>
